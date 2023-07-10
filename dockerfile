@@ -1,7 +1,7 @@
 FROM php:8.1-apache
 
 WORKDIR /var/www/html
-COPY . /var/www/html
+COPY ./src /var/www/html
 
 RUN apt-get update && apt-get install -y \
     libfreetype6-dev \
@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y \
     && a2enmod rewrite \
     && chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
+    
 RUN sed -ri -e 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!/var/www/html/public!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf

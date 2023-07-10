@@ -7,21 +7,21 @@ services:
     ports:
       - 80:80
     volumes:
-      - ./:/var/www/html
+      - ./src:/var/www/html
     environment:
-      - MYSQL_HOST=mysql
+      - DB_HOST=mysql
+      - DB_DATABASE=osticket
+      - DB_USER=osticket
+      - DB_PASSWORD=osticket
+    depends_on:
+      - mariadb
+
+  mariadb:
+    image: mariadb:latest
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=your_mysql_root_password
       - MYSQL_DATABASE=osticket
       - MYSQL_USER=osticket
       - MYSQL_PASSWORD=osticket
-    # depends_on:
-    #   - mysql
-
-  # mysql:
-  #   image: mysql:5.7
-  #   volumes:
-  #     - ./mysql-data:/var/lib/mysql
-  #   environment:
-  #     - MYSQL_ROOT_PASSWORD=your_mysql_root_password
-  #     - MYSQL_DATABASE=osticket
-  #     - MYSQL_USER=osticket
-  #     - MYSQL_PASSWORD=osticket

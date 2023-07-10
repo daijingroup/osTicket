@@ -1,7 +1,8 @@
-.htaccess
+src/.htaccess
 php53.cgi
-include/ost-config.php
-setup/cli/modules/importer
+src/include/ost-config.php
+
+src/setup/cli/modules/importer
 *.sw[a-z]
 .DS_Store
 .vagrant
@@ -15,6 +16,6 @@ stage
 *.phar
 
 # Ignore mPDF temp files
-include/mpdf/ttfontdata
-include/mpdf/tmp
+src/include/mpdf/ttfontdata
+src/include/mpdf/tmp
 nbproject/
